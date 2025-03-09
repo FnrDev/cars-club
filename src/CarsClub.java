@@ -98,6 +98,7 @@ public class CarsClub {
         }
 
         ArrayList<Car> userCars = targetOwner.getCars();
+        System.out.print("Owner name " + targetOwner.getName() + " with id " + targetOwner.getOwnerID() + ": " + " phone number" + targetOwner.getPhone());
         for (Car car : userCars) {
             System.out.println("Car make" + car.getMake());
             System.out.println("Car model" + car.getModel());
@@ -107,10 +108,82 @@ public class CarsClub {
     }
 
     public void putCarForSale() {
-        System.out.println("Putting car for sale");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the owner ID: ");
+        int ownerID = scan.nextInt();
+        scan.nextLine();
+
+        Owner targetOwner = null;
+        for (Owner owner : owners) {
+            if (owner.getOwnerID() == ownerID) {
+                targetOwner = owner;
+            }
+        }
+
+        if (targetOwner == null) {
+            System.out.println("Owner ID " + ownerID + " not found");
+        }
+
+        System.out.println("Enter car registration number: ");
+        String registration = scan.nextLine();
+
+        ArrayList<Car> ownerCars = targetOwner.getCars();
+        Car targetCar = null;
+
+        for (Car car : ownerCars) {
+            if (car.getReg().equals(registration)) {
+                targetCar = car;
+            }
+        }
+
+        if (targetCar == null) {
+            System.out.println("Car ID " + targetOwner.getOwnerID() + " not found");
+        }
+
+        targetOwner.setCarForSale(targetCar);
+        return;
     }
 
     public void testDriveCar() {
-        System.out.println("Testing drive car");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the ID of the owner who wishes to test drive car: ");
+        int driverOwnerId = scan.nextInt();
+        scan.nextLine();
+
+        Owner driverOwner = null;
+        for (Owner owner : owners) {
+            if (owner.getOwnerID() == ownerID) {
+                driverOwner = owner;
+            }
+        }
+
+        if (driverOwner == null) {
+            System.out.println("Owner ID " + ownerID + " not found");
+        }
+
+        System.out.println("Enter the ID of the owner who is providing the car for test drive");
+        int sellerOwnerId = scan.nextInt();
+        scan.nextLine();
+
+        Owner sellerOwner = null;
+        for (Owner owner : owners) {
+            if (owner.getOwnerID() == sellerOwnerId) {
+                sellerOwner = owner;
+            }
+        }
+
+        if (sellerOwner == null) {
+            System.out.println("Owner ID " + sellerOwnerId + " not found");
+        }
+
+        Car carForSale = sellerOwner.getCarForSale();
+        if (carForSale == null) {
+            System.out.println("Car ID " + sellerOwner.getOwnerID() + " not found");
+            return;
+        }
+
+        driverOwner.setCarForDrive(carForSale);
+
+        System.out.println("Car ID " + driverOwner.getOwnerID() + " added successfully");
     }
 }

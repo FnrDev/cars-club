@@ -25,6 +25,18 @@ public class Owner {
         return name;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public Car getCarForDrive() {
+        return carForDrive;
+    }
+
+    public void setCarForDrive(Car carForDrive) {
+        this.carForDrive = carForDrive;
+    }
+
     public void setOwnerID(int ownerID) {
         this.ownerID = ownerID;
     }
