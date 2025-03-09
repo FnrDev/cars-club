@@ -152,13 +152,13 @@ public class CarsClub {
 
         Owner driverOwner = null;
         for (Owner owner : owners) {
-            if (owner.getOwnerID() == ownerID) {
+            if (owner.getOwnerID() == driverOwnerId) {
                 driverOwner = owner;
             }
         }
 
         if (driverOwner == null) {
-            System.out.println("Owner ID " + ownerID + " not found");
+            System.out.println("Owner ID " + driverOwnerId + " not found");
         }
 
         System.out.println("Enter the ID of the owner who is providing the car for test drive");
