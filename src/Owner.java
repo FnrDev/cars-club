@@ -21,6 +21,10 @@ public class Owner {
         return ownerID;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setOwnerID(int ownerID) {
         this.ownerID = ownerID;
     }
@@ -35,5 +39,9 @@ public class Owner {
 
     public ArrayList<Car> getCars() {
         return cars;
+    }
+
+    public void addCar(Car car) {
+        this.cars.add(car);
     }
 }
