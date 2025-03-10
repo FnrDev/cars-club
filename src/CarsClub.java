@@ -76,7 +76,7 @@ public class CarsClub {
 
         targetOwner.addCar(newCar);
 
-        System.out.println("Car added successfully with ID " + targetOwner.getOwnerID());
+        System.out.println("Car added successfully to user ID " + targetOwner.getOwnerID());
     }
 
     public void listOwnersCars() {
@@ -97,13 +97,19 @@ public class CarsClub {
             return;
         }
 
+        if (targetOwner.getCarForDrive() != null) {
+            System.out.println("Currently test driving car " + targetOwner.getCarForDrive().getReg());
+        } else {
+            System.out.println("Currently test driving car: none");
+        }
+
         ArrayList<Car> userCars = targetOwner.getCars();
-        System.out.print("Owner name " + targetOwner.getName() + " with id " + targetOwner.getOwnerID() + ": " + " phone number" + targetOwner.getPhone());
+        System.out.print("Owner name " + targetOwner.getName() + " with id " + targetOwner.getOwnerID() + ": " + " phone number " + targetOwner.getPhone());
         for (Car car : userCars) {
-            System.out.println("Car make" + car.getMake());
-            System.out.println("Car model" + car.getModel());
-            System.out.println("Car year" + car.getYear());
-            System.out.println("Car mileage" + car.getMileage());
+            System.out.println("\nCar make: " + car.getMake());
+            System.out.println("Car model: " + car.getModel());
+            System.out.println("Car year: " + car.getYear());
+            System.out.println("Car mileage: " + car.getMileage());
         }
     }
 
@@ -138,6 +144,7 @@ public class CarsClub {
 
         if (targetCar == null) {
             System.out.println("Car ID " + targetOwner.getOwnerID() + " not found");
+            return;
         }
 
         targetOwner.setCarForSale(targetCar);
@@ -159,6 +166,7 @@ public class CarsClub {
 
         if (driverOwner == null) {
             System.out.println("Owner ID " + driverOwnerId + " not found");
+            return;
         }
 
         System.out.println("Enter the ID of the owner who is providing the car for test drive");
@@ -174,6 +182,7 @@ public class CarsClub {
 
         if (sellerOwner == null) {
             System.out.println("Owner ID " + sellerOwnerId + " not found");
+            return;
         }
 
         Car carForSale = sellerOwner.getCarForSale();
